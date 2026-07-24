@@ -1,0 +1,2900 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+public/
+  functional_zone.png
+  hero_gym.png
+src/
+  components/
+    AbbonamentiSection.jsx
+    DynamicSchedule.jsx
+    ExperiencePreviewLightbox.jsx
+    Footer.jsx
+    HeroShowcase.jsx
+    LocationContacts.jsx
+    Navbar.jsx
+    SocialProofCommunity.jsx
+  App.jsx
+  index.css
+  main.jsx
+Guida Metodologica Palestra Lecco.md
+Guida Operativa Fitness Lecco.md
+index.html
+package.json
+README.md
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="src/components/AbbonamentiSection.jsx">
+import React from 'react';
+import { Check, Flame, Zap, Crown, Shield } from 'lucide-react';
+
+export default function AbbonamentiSection({ onSelectPlan }) {
+  const plans = [
+    {
+      id: 'basic',
+      name: 'BASIC CLUB',
+      subtitle: 'Per chi cerca la massima efficienza quotidiana',
+      price: '49',
+      period: 'al mese',
+      badge: 'STANDARD',
+      badgeClass: 'badge-neon',
+      features: [
+        'Accesso Sala Attrezzi High-Tech (2500 m²)',
+        'Scheda d allenamento digitale via App Club',
+        'Spogliatoi Executive con armadietto smart',
+        'Fruizione orari standard (07:00 - 22:00)'
+      ],
+      ctaText: 'SCEGLI BASIC',
+      cardClass: 'card-neon',
+      btnClass: 'btn-outline-neon',
+      isPopular: false
+    },
+    {
+      id: 'pro',
+      name: 'PRO PERFORMANCE',
+      subtitle: 'L abbonamento più scelto per risultati senza limiti',
+      price: '79',
+      period: 'al mese',
+      badge: 'PIÙ RICHIESTO',
+      badgeClass: 'badge-neon',
+      features: [
+        'Accesso H24 illimitato 7 giorni su 7',
+        'Tutti i 50+ corsi settimanali inclusi nel palinsesto',
+        'Accesso Area Wellness, Cryo & Recovery',
+        '1 Sessione mensile di Personal Coaching con InBody 770',
+        'Ospite gratuito 1 volta al mese'
+      ],
+      ctaText: 'ATTIVA PRO PERFORMANCE',
+      cardClass: 'card-neon',
+      btnClass: 'btn-neon',
+      isPopular: true
+    },
+    {
+      id: 'vip',
+      name: 'EXCLUSIVE VIP',
+      subtitle: 'L esperienza di lusso definitiva per la massima performance',
+      price: '139',
+      period: 'al mese',
+      badge: 'CLUB GOLD VIP',
+      badgeClass: 'badge-gold',
+      features: [
+        'Tutti i vantaggi della formula Pro Performance',
+        'Personal Trainer dedicato per ogni sessione',
+        'Consulto Nutrizionale integrativo mensile',
+        'Accesso riservato alla VIP Suite Private Studio',
+        'Parcheggio riservato con colonnina ricarica EV'
+      ],
+      ctaText: 'ENTRA IN VIP CLUB',
+      cardClass: 'card-gold',
+      btnClass: 'btn-gold',
+      isPopular: false
+    }
+  ];
+
+  return (
+    <section id="abbonamenti" className="section-black">
+      <div className="container">
+        
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div className="badge-gold" style={{ marginBottom: '12px' }}>
+            <Crown size={14} />
+            <span>MEMBERSHIP ESCLUSIVE</span>
+          </div>
+          <h2 style={{ fontSize: 'var(--text-h1)', marginBottom: '16px' }}>
+            ABBONAMENTI <span className="text-neon">FITNESS LECCO</span>
+          </h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '640px', margin: '0 auto', fontSize: '1.05rem' }}>
+            Piani flessibili progettati per adattarsi al tuo stile di vita. Nessun vincolo nascosto, solo la massima qualità di allenamento a Lecco.
+          </p>
+        </div>
+
+        {/* Pricing Cards Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '32px',
+            alignItems: 'stretch'
+          }}
+        >
+          {plans.map((plan) => (
+            <div 
+              key={plan.id}
+              className={plan.cardClass}
+              style={{
+                padding: '36px 28px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                border: plan.isPopular ? '2px solid var(--accent-neon)' : undefined,
+                boxShadow: plan.isPopular ? 'var(--glow-red-intense)' : undefined,
+                position: 'relative'
+              }}
+            >
+              {plan.isPopular && (
+                <div 
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: '32px',
+                    transform: 'translateY(-50%)',
+                    backgroundColor: 'var(--accent-neon)',
+                    color: '#FFF',
+                    fontWeight: 800,
+                    fontSize: '0.75rem',
+                    padding: '6px 14px',
+                    borderRadius: 'var(--radius-full)',
+                    letterSpacing: '1px',
+                    boxShadow: 'var(--glow-red)'
+                  }}
+                >
+                  PIÙ RICHIESTO A LECCO
+                </div>
+              )}
+
+              <div>
+                <span className={plan.badgeClass} style={{ marginBottom: '16px' }}>
+                  {plan.name === 'EXCLUSIVE VIP' ? <Crown size={14} /> : <Zap size={14} />}
+                  <span>{plan.badge}</span>
+                </span>
+
+                <h3 style={{ fontSize: '1.8rem', color: '#FFFFFF', marginBottom: '8px' }}>
+                  {plan.name}
+                </h3>
+                
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '28px', minHeight: '40px' }}>
+                  {plan.subtitle}
+                </p>
+
+                {/* Price Display */}
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginBottom: '32px' }}>
+                  <span style={{ fontSize: '1.5rem', fontWeight: 700, color: plan.name === 'EXCLUSIVE VIP' ? 'var(--accent-gold)' : 'var(--accent-neon)' }}>€</span>
+                  <span style={{ fontSize: '3.8rem', fontWeight: 900, fontFamily: 'var(--font-heading)', lineHeight: 1, color: '#FFFFFF' }}>{plan.price}</span>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>/ {plan.period}</span>
+                </div>
+
+                {/* Feature List */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '36px' }}>
+                  {plan.features.map((feat, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <div 
+                        style={{
+                          width: '20px',
+                          height: '20px',
+                          borderRadius: '50%',
+                          backgroundColor: plan.name === 'EXCLUSIVE VIP' ? 'rgba(229,169,60,0.2)' : 'rgba(255,0,51,0.2)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          marginTop: '2px'
+                        }}
+                      >
+                        <Check size={13} color={plan.name === 'EXCLUSIVE VIP' ? 'var(--accent-gold)' : 'var(--accent-neon)'} />
+                      </div>
+                      <span style={{ color: '#E4E4E7', fontSize: '0.95rem', lineHeight: 1.4 }}>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button 
+                onClick={() => onSelectPlan(plan)}
+                className={plan.btnClass}
+                style={{ width: '100%', padding: '14px' }}
+              >
+                {plan.ctaText}
+              </button>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/DynamicSchedule.jsx">
+import React, { useState } from 'react';
+import { Calendar, Clock, Flame, Dumbbell, UserCheck, Zap, ChevronRight, Info } from 'lucide-react';
+
+export const COURSES_DATA = [
+  {
+    id: 'course-1',
+    title: 'HIGH VOLTAGE HYROX',
+    category: 'Functional',
+    day: 'Lunedì',
+    time: '07:30 - 08:30',
+    duration: '60 min',
+    intensity: 5,
+    room: 'Functional Arena 01',
+    trainer: 'Marco Riva',
+    badge: 'HOT TREND',
+    image: '/functional_zone.png',
+    description: 'Allenamento funzionale combinato di corsa ed esercizi ad alta intensità per massimizzare forza e resistenza aerobica.',
+    equipment: 'Sled, Kettlebells, Ergometri, SkiErg',
+    target: 'Resistenza Cardiovascolare & Potenza Muscolare'
+  },
+  {
+    id: 'course-2',
+    title: 'RED PULSE CARDIO CYCLE',
+    category: 'Cardio',
+    day: 'Lunedì',
+    time: '12:30 - 13:15',
+    duration: '45 min',
+    intensity: 4,
+    room: 'Light & Beats Studio',
+    trainer: 'Elena Rossi',
+    badge: 'POPULAR',
+    image: '/hero_gym.png',
+    description: 'Indoor cycling immersivo con gioco di luci LED neon sincronizzate al battito cardiaco ed alla frequenza musicale.',
+    equipment: 'Technogym Skillbike, Fascia Cardio Heart-Rate',
+    target: 'Consumo Calorico Elevato & Tonificazione Gambe'
+  },
+  {
+    id: 'course-3',
+    title: 'POWER LIFTING HEAVY FORGE',
+    category: 'Strength',
+    day: 'Lunedì',
+    time: '18:30 - 19:45',
+    duration: '75 min',
+    intensity: 5,
+    room: 'Heavy Iron Zone',
+    trainer: 'Stefano Brambilla',
+    badge: 'PRO STRENGTH',
+    image: '/functional_zone.png',
+    description: 'Sessione di condizionamento di forza pura incentrata sui tre grandi alzate: Stacco, Panca e Squat con correzione biomeccanica.',
+    equipment: 'Bilancieri Olimpici Eleiko, Dischi Calibrati, Rack Heavy Duty',
+    target: 'Ipertrofia & Forza Massimale'
+  },
+  {
+    id: 'course-4',
+    title: 'ONE-ON-ONE VIP COACHING',
+    category: 'Personal Training',
+    day: 'Martedì',
+    time: '09:00 - 10:00',
+    duration: '60 min',
+    intensity: 4,
+    room: 'VIP Suite Private',
+    trainer: 'Davide Lecco',
+    badge: 'EXCLUSIVE',
+    image: '/hero_gym.png',
+    description: 'Percorso individualizzato personalizzato con anamnesi corporea, monitoraggio metabolico e supporto nutrizionale dedicato.',
+    equipment: 'Analizzatore InBody 770, Biomeccanica guidata',
+    target: 'Raggiungimento Obiettivi Su Misura'
+  },
+  {
+    id: 'course-5',
+    title: 'RESEGONE CROSS CIRCUIT',
+    category: 'Functional',
+    day: 'Martedì',
+    time: '19:00 - 20:00',
+    duration: '60 min',
+    intensity: 5,
+    room: 'Outdoor & Turf Zone',
+    trainer: 'Marco Riva',
+    badge: 'HIGH ENERGY',
+    image: '/functional_zone.png',
+    description: 'Circuito metabolico ispirato all allenamento outdoor lecchese. Corda navale, zavorre e trazioni ad alto impatto.',
+    equipment: 'Battle Ropes, Palle Mediche, Struttura Rig Trazioni',
+    target: 'Condizionamento Totale Corpo'
+  },
+  {
+    id: 'course-6',
+    title: 'METABOLIC BURN 360',
+    category: 'Cardio',
+    day: 'Mercoledì',
+    time: '13:00 - 13:50',
+    duration: '50 min',
+    intensity: 4,
+    room: 'Cardio High-Tech Balcony',
+    trainer: 'Chiara Fontana',
+    badge: 'FAT BURN',
+    image: '/hero_gym.png',
+    description: 'Invervalli HIIT sul tapis roulant ad inclitazione variabile abbinati a lavoro isometrico a corpo libero.',
+    equipment: 'Skillrun Technogym, Treadmill Incline',
+    target: 'Accelerazione Metabolismo Basale'
+  },
+  {
+    id: 'course-7',
+    title: 'HYPER STRENGTH & CORE',
+    category: 'Strength',
+    day: 'Giovedì',
+    time: '18:00 - 19:00',
+    duration: '60 min',
+    intensity: 4,
+    room: 'Heavy Iron Zone',
+    trainer: 'Stefano Brambilla',
+    badge: 'SCULPT',
+    image: '/functional_zone.png',
+    description: 'Focus mirato su catena posteriore, stabilità del core e sviluppo armonico muscolare senza sovraccarichi articolari.',
+    equipment: 'Manubri Gommati Elite, Cable Stations, Bench Pro',
+    target: 'Definizione e Postura Ottimale'
+  },
+  {
+    id: 'course-8',
+    title: 'ATHLETIC SPEED & AGILITY',
+    category: 'Personal Training',
+    day: 'Venerdì',
+    time: '17:30 - 18:30',
+    duration: '60 min',
+    intensity: 5,
+    room: 'Functional Arena 01',
+    trainer: 'Davide Lecco',
+    badge: 'PERFORMANCE',
+    image: '/functional_zone.png',
+    description: 'Lavoro specifico per atleti e appassionati di sport montani (trail running, arrampicata) per reattività ed esplosività.',
+    equipment: 'Piattaforme di Forza, Scalette di Agilità, Plyo Boxes',
+    target: 'Reattività, Prevenzione Infortuni & Esplosività'
+  }
+];
+
+export default function DynamicSchedule({ onOpenLightbox }) {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedDay, setSelectedDay] = useState('Lunedì');
+
+  const categories = ['All', 'Cardio', 'Strength', 'Functional', 'Personal Training'];
+  const days = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+
+  const filteredCourses = COURSES_DATA.filter((course) => {
+    const categoryMatch = selectedCategory === 'All' || course.category === selectedCategory;
+    const dayMatch = selectedDay === 'All' || course.day === selectedDay;
+    return categoryMatch && dayMatch;
+  });
+
+  return (
+    <section id="corsi" className="section-dark">
+      <div className="container">
+        
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <div className="badge-neon" style={{ marginBottom: '12px' }}>
+            <Calendar size={14} />
+            <span>PALINSESTO DINAMICO</span>
+          </div>
+          <h2 style={{ fontSize: 'var(--text-h1)', marginBottom: '16px' }}>
+            TROVA IL TUO <span className="text-neon">RITMO DI ALLENAMENTO</span>
+          </h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '1.05rem' }}>
+            Filtra le sessioni per categoria o giorno della settimana e scopri le specifiche di ciascun corso firmato Fitness Lecco.
+          </p>
+        </div>
+
+        {/* Category Filters Bar */}
+        <div 
+          style={{
+            display: 'flex',
+            gap: '12px',
+            overflowX: 'auto',
+            paddingBottom: '12px',
+            marginBottom: '24px',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}
+        >
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                style={{
+                  padding: '10px 20px',
+                  borderRadius: 'var(--radius-full)',
+                  border: isActive ? '1px solid var(--accent-neon)' : '1px solid var(--border-dark)',
+                  backgroundColor: isActive ? 'rgba(255,0,51,0.15)' : 'rgba(20,20,20,0.6)',
+                  color: isActive ? 'var(--accent-neon)' : 'var(--text-primary)',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1rem',
+                  letterSpacing: '1px',
+                  cursor: 'pointer',
+                  boxShadow: isActive ? 'var(--glow-red)' : 'none',
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {cat === 'All' ? 'TUTTE LE CATEGORIE' : cat.toUpperCase()}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Day Picker Tabs */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gap: '10px',
+            marginBottom: '40px',
+            backgroundColor: 'rgba(15,15,15,0.8)',
+            padding: '8px',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--border-dark)'
+          }}
+        >
+          {days.map((day) => {
+            const isActive = selectedDay === day;
+            return (
+              <button
+                key={day}
+                onClick={() => setSelectedDay(day)}
+                style={{
+                  padding: '12px 8px',
+                  borderRadius: 'var(--radius-sm)',
+                  border: 'none',
+                  backgroundColor: isActive ? 'var(--accent-neon)' : 'transparent',
+                  color: isActive ? '#FFFFFF' : 'var(--text-muted)',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.1rem',
+                  letterSpacing: '1px',
+                  cursor: 'pointer',
+                  boxShadow: isActive ? 'var(--glow-red)' : 'none',
+                  transition: 'all 0.2s ease',
+                  fontWeight: isActive ? '700' : '400'
+                }}
+              >
+                {day.toUpperCase()}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Courses Cards Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px'
+          }}
+        >
+          {filteredCourses.length > 0 ? (
+            filteredCourses.map((course) => (
+              <div 
+                key={course.id}
+                className="card-neon"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  padding: '24px'
+                }}
+              >
+                <div>
+                  {/* Top Badge & Time */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <span 
+                      style={{
+                        fontSize: '0.75rem',
+                        fontWeight: 800,
+                        letterSpacing: '1px',
+                        color: 'var(--accent-gold)',
+                        backgroundColor: 'rgba(229,169,60,0.12)',
+                        padding: '4px 10px',
+                        borderRadius: '4px',
+                        border: '1px solid var(--border-gold)'
+                      }}
+                    >
+                      {course.category}
+                    </span>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--accent-neon)', fontSize: '0.9rem', fontWeight: 600 }}>
+                      <Clock size={16} />
+                      <span>{course.time}</span>
+                    </div>
+                  </div>
+
+                  {/* Course Title */}
+                  <h3 style={{ fontSize: '1.45rem', marginBottom: '8px', color: '#FFFFFF' }}>
+                    {course.title}
+                  </h3>
+
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '20px', lineHeight: 1.5 }}>
+                    {course.description}
+                  </p>
+
+                  {/* Course Details Info Box */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '24px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <UserCheck size={14} color="var(--accent-neon)" />
+                      <span>Trainer: <strong style={{ color: '#FFF' }}>{course.trainer}</strong></span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <Dumbbell size={14} color="var(--accent-gold)" />
+                      <span>Zona: <strong style={{ color: '#FFF' }}>{course.room}</strong></span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <Flame size={14} color="var(--accent-neon)" />
+                      <span>Intensità: </span>
+                      <div style={{ display: 'flex', gap: '3px' }}>
+                        {[...Array(5)].map((_, i) => (
+                          <div 
+                            key={i} 
+                            style={{
+                              width: '8px',
+                              height: '14px',
+                              borderRadius: '2px',
+                              backgroundColor: i < course.intensity ? 'var(--accent-neon)' : '#262626',
+                              boxShadow: i < course.intensity ? '0 0 6px rgba(255,0,51,0.6)' : 'none'
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Footer Button */}
+                <button
+                  onClick={() => onOpenLightbox(course)}
+                  className="btn-outline-neon"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    fontSize: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <Info size={16} />
+                  <span>PREVIEW & DETTAGLI</span>
+                </button>
+              </div>
+            ))
+          ) : (
+            <div 
+              style={{
+                gridColumn: '1 / -1',
+                padding: '48px',
+                textAlign: 'center',
+                backgroundColor: 'rgba(20,20,20,0.4)',
+                borderRadius: '12px',
+                border: '1px dashed var(--border-neon)'
+              }}
+            >
+              <h3 style={{ fontSize: '1.5rem', color: 'var(--text-muted)', marginBottom: '8px' }}>NESSUN CORSO IN QUESTA CATEGORIA PER IL GIORNO SELEZIONATO</h3>
+              <p style={{ color: 'var(--text-dim)' }}>Seleziona un altro giorno o passa a "Tutte le Categorie"</p>
+            </div>
+          )}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/ExperiencePreviewLightbox.jsx">
+import React, { useState } from 'react';
+import { X, Play, Clock, Flame, Dumbbell, UserCheck, Shield, Check, Zap, CheckCircle } from 'lucide-react';
+
+export default function ExperiencePreviewLightbox({ item, onClose, onConfirmBooking }) {
+  const [booked, setBooked] = useState(false);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+
+  if (!item) return null;
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setBooked(true);
+  };
+
+  return (
+    <div 
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 1000,
+        backgroundColor: 'rgba(5, 5, 5, 0.92)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
+        overflowY: 'auto'
+      }}
+    >
+      <div 
+        className="card-neon"
+        style={{
+          width: '100%',
+          maxWidth: '900px',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          backgroundColor: 'rgba(14, 14, 14, 0.98)',
+          border: '1px solid var(--border-neon-strong)',
+          boxShadow: 'var(--glow-red-intense)',
+          borderRadius: 'var(--radius-lg)',
+          position: 'relative',
+          padding: '0'
+        }}
+      >
+        {/* Close Modal Button */}
+        <button
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            zIndex: 10,
+            background: 'rgba(255, 0, 51, 0.15)',
+            border: '1px solid var(--border-neon)',
+            borderRadius: '50%',
+            width: '44px',
+            height: '44px',
+            color: '#FFFFFF',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <X size={24} color="var(--accent-neon)" />
+        </button>
+
+        {/* Media Preview Header with Video Loop Banner */}
+        <div 
+          style={{
+            position: 'relative',
+            height: '320px',
+            width: '100%',
+            backgroundImage: `url('${item.image || '/hero_gym.png'}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
+          <div 
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(to bottom, rgba(14,14,14,0.3) 0%, rgba(14,14,14,1) 100%)'
+            }}
+          />
+
+          {/* Simulated Video Loop Badge */}
+          <div 
+            style={{
+              position: 'absolute',
+              bottom: '24px',
+              left: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px'
+            }}
+          >
+            <div 
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 0, 51, 0.85)',
+                boxShadow: 'var(--glow-red-intense)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
+            >
+              <Play size={24} color="#FFFFFF" style={{ marginLeft: '4px' }} />
+            </div>
+            <div>
+              <span className="badge-neon" style={{ fontSize: '0.75rem' }}>TEASER LOOP HD</span>
+              <h2 style={{ fontSize: '2rem', color: '#FFFFFF', margin: '4px 0 0 0' }}>{item.title}</h2>
+            </div>
+          </div>
+        </div>
+
+        {/* Lightbox Content Section */}
+        <div style={{ padding: '32px' }}>
+          
+          {/* Quick Specifications Strip */}
+          <div 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: '16px',
+              padding: '16px',
+              backgroundColor: 'rgba(20, 20, 20, 0.8)',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--border-dark)',
+              marginBottom: '32px'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Clock size={20} color="var(--accent-neon)" />
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>ORARIO & DURATA</div>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{item.time} ({item.duration})</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Dumbbell size={20} color="var(--accent-gold)" />
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>ZONA ATTREZZATA</div>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{item.room}</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <UserCheck size={20} color="var(--accent-neon)" />
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>INSTRUCTOR</div>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{item.trainer}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Description & Specs Grid */}
+          <div 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '32px',
+              marginBottom: '32px'
+            }}
+          >
+            <div>
+              <h4 style={{ fontSize: '1.2rem', color: 'var(--accent-neon)', marginBottom: '12px' }}>
+                DESCRIZIONE DELL'ESPERIENZA
+              </h4>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '20px' }}>
+                {item.description}
+              </p>
+
+              <h4 style={{ fontSize: '1.2rem', color: 'var(--accent-gold)', marginBottom: '12px' }}>
+                ATTREZZATURA DISPONIBILE
+              </h4>
+              <p style={{ color: 'var(--text-primary)', fontWeight: 500, lineHeight: 1.6 }}>
+                {item.equipment}
+              </p>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: '1.2rem', color: 'var(--accent-neon)', marginBottom: '12px' }}>
+                OBIETTIVI & BENEFICI
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <Check size={18} color="var(--accent-neon)" style={{ marginTop: '2px' }} />
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{item.target}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <Check size={18} color="var(--accent-neon)" style={{ marginTop: '2px' }} />
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Monitoraggio Heart-Rate in tempo reale sui display del club</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <Check size={18} color="var(--accent-neon)" style={{ marginTop: '2px' }} />
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Accesso prioritario spogliatoi VIP e area recupero cryogenic</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Trial Registration inside Modal */}
+          <div 
+            style={{
+              padding: '24px',
+              backgroundColor: 'rgba(255, 0, 51, 0.08)',
+              border: '1px solid var(--border-neon)',
+              borderRadius: 'var(--radius-md)'
+            }}
+          >
+            {booked ? (
+              <div style={{ textAlign: 'center', padding: '16px' }}>
+                <CheckCircle size={48} color="var(--accent-neon)" style={{ marginBottom: '12px' }} />
+                <h3 style={{ fontSize: '1.6rem', color: '#FFFFFF', marginBottom: '8px' }}>PRENOTAZIONE CONFERMATA!</h3>
+                <p style={{ color: 'var(--text-muted)' }}>
+                  Ti aspettiamo presso la sede di Lecco per il corso <strong>{item.title}</strong>. Il nostro team ti contatterà per la conferma dell'orario.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                  <Zap size={20} color="var(--accent-neon)" />
+                  <h3 style={{ fontSize: '1.3rem', color: '#FFFFFF', margin: 0 }}>PRENOTA LA TUA SESSIONE DI PROVA</h3>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
+                  <input 
+                    type="text"
+                    required
+                    placeholder="Il tuo nome e cognome"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{
+                      padding: '12px 16px',
+                      backgroundColor: 'rgba(10,10,10,0.9)',
+                      border: '1px solid var(--border-dark)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: '#FFF',
+                      fontSize: '0.95rem'
+                    }}
+                  />
+                  <input 
+                    type="tel"
+                    required
+                    placeholder="Numero di telefono"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    style={{
+                      padding: '12px 16px',
+                      backgroundColor: 'rgba(10,10,10,0.9)',
+                      border: '1px solid var(--border-dark)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: '#FFF',
+                      fontSize: '0.95rem'
+                    }}
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="btn-neon"
+                  style={{ width: '100%', padding: '14px', fontSize: '1.1rem' }}
+                >
+                  CONFERMA PRENOTAZIONE GRATUITA
+                </button>
+              </form>
+            )}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/Footer.jsx">
+import React from 'react';
+import { Flame, Instagram, MapPin, Phone, Mail, ChevronRight } from 'lucide-react';
+
+export default function Footer({ onNavClick }) {
+  return (
+    <footer 
+      style={{
+        backgroundColor: '#050505',
+        borderTop: '1px solid var(--border-neon)',
+        paddingTop: '64px',
+        paddingBottom: '32px',
+        color: 'var(--text-muted)'
+      }}
+    >
+      <div className="container">
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '40px',
+            marginBottom: '48px'
+          }}
+        >
+          {/* Col 1: Brand Info */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+              <div 
+                style={{
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '6px',
+                  backgroundColor: 'var(--accent-neon)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: 'var(--glow-red)'
+                }}
+              >
+                <Flame size={22} color="#FFFFFF" />
+              </div>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', color: '#FFFFFF', letterSpacing: '1px' }}>
+                FITNESS <span style={{ color: 'var(--accent-neon)' }}>LECCO</span>
+              </span>
+            </div>
+
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '20px' }}>
+              La struttura fitness ad altissimo impatto tecnologico ed energetico a Lecco. Performance, innovazione e senso di appartenenza al territorio lecchese.
+            </p>
+
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noreferrer"
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                  border: '1px solid var(--border-neon)',
+                  color: 'var(--accent-neon)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <Instagram size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Col 2: Navigation Links */}
+          <div>
+            <h4 style={{ color: '#FFFFFF', fontSize: '1.2rem', marginBottom: '20px', letterSpacing: '1px' }}>
+              NAVIGAZIONE RAPIDA
+            </h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.9rem' }}>
+              {['home', 'corsi', 'abbonamenti', 'location', 'contatti'].map((id) => (
+                <li key={id}>
+                  <button 
+                    onClick={() => onNavClick(id)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--text-muted)',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: 0
+                    }}
+                  >
+                    <ChevronRight size={14} color="var(--accent-neon)" />
+                    <span style={{ textTransform: 'capitalize' }}>{id === 'home' ? 'Home Showcase' : id}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3: Territory & Identity */}
+          <div>
+            <h4 style={{ color: '#FFFFFF', fontSize: '1.2rem', marginBottom: '20px', letterSpacing: '1px' }}>
+              TERRITORIO & IDENTITY
+            </h4>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '12px' }}>
+              Ispirato alla forza monumentale del Resegone ed all'energia del Lago di Lecco.
+            </p>
+            <div className="badge-gold" style={{ fontSize: '0.75rem' }}>
+              FITNESS LECCO APPROVED • 2026
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div 
+          style={{
+            paddingTop: '24px',
+            borderTop: '1px solid rgba(255,255,255,0.06)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '16px',
+            fontSize: '0.8rem'
+          }}
+        >
+          <div>
+            © {new Date().getFullYear()} Fitness Lecco Club. Tutti i diritti riservati. Corso Martiri della Liberazione 42, Lecco.
+          </div>
+          <div style={{ display: 'flex', gap: '16px' }}>
+            <span>Privacy Policy</span>
+            <span>•</span>
+            <span>Termini & Condizioni</span>
+            <span>•</span>
+            <span>Cookie Policy</span>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
+}
+</file>
+
+<file path="src/components/HeroShowcase.jsx">
+import React from 'react';
+import { Zap, Play, Flame, Shield, Activity, ArrowRight, Award } from 'lucide-react';
+
+export default function HeroShowcase({ onExploreCourses, onBookTrial }) {
+  return (
+    <section 
+      id="home"
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        paddingTop: '120px',
+        paddingBottom: '80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        background: 'radial-gradient(circle at 50% 30%, rgba(255, 0, 51, 0.18) 0%, rgba(10, 10, 10, 1) 75%)'
+      }}
+    >
+      {/* Background Image with Dark Glass Overlay */}
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `url('/hero_gym.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.35,
+          filter: 'contrast(1.2) brightness(0.8)',
+          zIndex: 1
+        }}
+      />
+
+      {/* Dark Gradient Vignette Overlay */}
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.98) 100%), radial-gradient(circle at center, transparent 30%, rgba(10,10,10,0.9) 100%)',
+          zIndex: 2
+        }}
+      />
+
+      {/* ECG Heartbeat animated SVG Wave Line across background */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: '48%',
+          left: 0,
+          width: '100%',
+          height: '140px',
+          pointerEvents: 'none',
+          zIndex: 3,
+          opacity: 0.8
+        }}
+      >
+        <svg width="100%" height="100%" viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+          <path 
+            d="M0,60 L400,60 L430,20 L450,100 L470,10 L490,90 L510,60 L900,60 L930,15 L950,105 L970,5 L990,85 L1010,60 L1440,60" 
+            stroke="#FF0033" 
+            strokeWidth="3" 
+            strokeLinecap="round"
+            style={{
+              filter: 'drop-shadow(0 0 12px rgba(255, 0, 51, 0.9))',
+              strokeDasharray: 1000,
+              animation: 'ecgPulse 6s linear infinite'
+            }}
+          />
+        </svg>
+      </div>
+
+      {/* Main Content Container inside Neon Portal Frame */}
+      <div 
+        className="container" 
+        style={{ 
+          position: 'relative', 
+          zIndex: 10, 
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}
+      >
+        
+        {/* Top Floating Badge */}
+        <div 
+          className="badge-neon animate-float"
+          style={{ marginBottom: '24px', boxShadow: 'var(--glow-red)' }}
+        >
+          <Flame size={14} color="var(--accent-neon)" />
+          <span>NOVITÀ ESCLUSIVA A LECCO</span>
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--accent-neon)', display: 'inline-block' }} />
+        </div>
+
+        {/* Monumental Headline */}
+        <h1 
+          className="title-hero"
+          style={{ 
+            maxWidth: '1000px', 
+            marginBottom: '20px',
+            textTransform: 'uppercase',
+            lineHeight: 0.98
+          }}
+        >
+          UNA NUOVA DIMENSIONE DEL <span className="text-neon">FITNESS</span>
+        </h1>
+
+        <p 
+          style={{
+            maxWidth: '680px',
+            fontSize: 'clamp(1.05rem, 2vw, 1.25rem)',
+            color: 'var(--text-muted)',
+            marginBottom: '40px',
+            lineHeight: 1.6,
+            fontWeight: 400
+          }}
+        >
+          Il primo club ad alta tecnologia che fonde l'energia pura delle montagne lecchesi con attrezzature d'avanguardia, palinsesto dinamico e personal training esclusivo.
+        </p>
+
+        {/* Action Buttons */}
+        <div 
+          style={{
+            display: 'flex',
+            gap: '20px',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            marginBottom: '60px'
+          }}
+        >
+          <button 
+            className="btn-neon"
+            onClick={onBookTrial}
+            style={{ padding: '16px 36px', fontSize: '1.15rem' }}
+          >
+            <Zap size={20} /> PRENOTA PROVA GRATUITA
+          </button>
+
+          <button 
+            className="btn-outline-neon"
+            onClick={onExploreCourses}
+            style={{ padding: '16px 36px', fontSize: '1.15rem' }}
+          >
+            <span>ESPLORA I CORSI</span>
+            <ArrowRight size={20} />
+          </button>
+        </div>
+
+        {/* Quick Highlights / Feature Chips Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '16px',
+            width: '100%',
+            maxWidth: '960px'
+          }}
+        >
+          <div className="card-neon" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div style={{ padding: '10px', borderRadius: '8px', background: 'rgba(255,0,51,0.15)', color: 'var(--accent-neon)' }}>
+              <Activity size={22} />
+            </div>
+            <div style={{ textAlign: 'left' }}>
+              <h4 style={{ fontSize: '1.1rem', color: '#FFFFFF', margin: 0 }}>2500 M² HIGH-TECH</h4>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Vista Resegone & Lago</span>
+            </div>
+          </div>
+
+          <div className="card-neon" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div style={{ padding: '10px', borderRadius: '8px', background: 'rgba(229,169,60,0.15)', color: 'var(--accent-gold)' }}>
+              <Flame size={22} />
+            </div>
+            <div style={{ textAlign: 'left' }}>
+              <h4 style={{ fontSize: '1.1rem', color: '#FFFFFF', margin: 0 }}>50+ CORSI/SETT</h4>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Cardio, Functional & Heavy</span>
+            </div>
+          </div>
+
+          <div className="card-neon" style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div style={{ padding: '10px', borderRadius: '8px', background: 'rgba(255,0,51,0.15)', color: 'var(--accent-neon)' }}>
+              <Award size={22} />
+            </div>
+            <div style={{ textAlign: 'left' }}>
+              <h4 style={{ fontSize: '1.1rem', color: '#FFFFFF', margin: 0 }}>FITNESS LECCO APPROVED</h4>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Trainer Certificati Elite</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/LocationContacts.jsx">
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Zap, ShieldCheck } from 'lucide-react';
+
+export default function LocationContacts() {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    telefono: '',
+    interesso: 'Prova Gratuita',
+    messaggio: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <section id="location" className="section-black" style={{ borderTop: '1px solid var(--border-dark)' }}>
+      <div className="container">
+        
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <div className="badge-neon" style={{ marginBottom: '12px' }}>
+            <MapPin size={14} />
+            <span>SEDE UFFICIALE LECCO</span>
+          </div>
+          <h2 style={{ fontSize: 'var(--text-h1)', marginBottom: '16px' }}>
+            VIENI A TROVARCI NEL <span className="text-neon">CUORE DI LECCO</span>
+          </h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '1.05rem' }}>
+            Posizione strategica a pochi passi dal centro e dal lungolago, dotata di ampio parcheggio ed attrezzature di ultima generazione.
+          </p>
+        </div>
+
+        {/* Content Grid: Info & Form */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '40px',
+            alignItems: 'start'
+          }}
+        >
+          {/* Left Box: Location & Hours Specs */}
+          <div>
+            <div className="card-neon" style={{ padding: '32px', marginBottom: '24px' }}>
+              <h3 style={{ fontSize: '1.6rem', color: '#FFFFFF', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <MapPin color="var(--accent-neon)" /> CONATTI & CONTATTI
+              </h3>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                  <div style={{ padding: '10px', borderRadius: '8px', background: 'rgba(255,0,51,0.15)', color: 'var(--accent-neon)' }}>
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', color: '#FFF', margin: '0 0 4px 0' }}>INDIRIZZO</h4>
+                    <p style={{ color: 'var(--text-muted)', margin: 0 }}>Corso Martiri della Liberazione 42, 23900 Lecco (LC)</p>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--accent-gold)' }}>Vista Resegone • Ampio Parcheggio EV</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                  <div style={{ padding: '10px', borderRadius: '8px', background: 'rgba(255,0,51,0.15)', color: 'var(--accent-neon)' }}>
+                    <Phone size={20} />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', color: '#FFF', margin: '0 0 4px 0' }}>TELEFONO & WHATSAPP</h4>
+                    <p style={{ color: 'var(--text-muted)', margin: 0 }}>+39 0341 890 1234</p>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>Risposta rapida dalle 07:00 alle 22:00</span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                  <div style={{ padding: '10px', borderRadius: '8px', background: 'rgba(255,0,51,0.15)', color: 'var(--accent-neon)' }}>
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '1.1rem', color: '#FFF', margin: '0 0 4px 0' }}>EMAIL INFORMAZIONI</h4>
+                    <p style={{ color: 'var(--text-muted)', margin: 0 }}>info@fitnessleccoclub.it</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Opening Hours Box */}
+            <div className="card-neon" style={{ padding: '32px' }}>
+              <h3 style={{ fontSize: '1.4rem', color: '#FFFFFF', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Clock color="var(--accent-gold)" /> ORARI DI APERTURA
+              </h3>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.95rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid var(--border-dark)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>Lunedì - Venerdì</span>
+                  <strong style={{ color: 'var(--accent-neon)' }}>06:00 - 23:00</strong>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid var(--border-dark)' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>Sabato & Domenica</span>
+                  <strong style={{ color: '#FFFFFF' }}>08:00 - 20:00</strong>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--text-muted)' }}>Membri H24 Pro & VIP</span>
+                  <strong style={{ color: 'var(--accent-gold)' }}>Accesso 24/7</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Box: Interactive Form */}
+          <div className="card-neon" style={{ padding: '36px' }} id="contatti">
+            <h3 style={{ fontSize: '1.8rem', color: '#FFFFFF', marginBottom: '8px' }}>
+              RICHIEDI INFORMAZIONI O PROVA
+            </h3>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '28px', fontSize: '0.95rem' }}>
+              Compila il modulo per prenotare la tua prima giornata di allenamento gratuita guidata da un nostro master coach.
+            </p>
+
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '32px 16px' }}>
+                <CheckCircle size={56} color="var(--accent-neon)" style={{ marginBottom: '16px' }} />
+                <h3 style={{ fontSize: '1.8rem', color: '#FFFFFF', marginBottom: '8px' }}>MESSAGGIO INVIATO!</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                  Grazie <strong>{formData.nome}</strong>! Un consulente del Fitness Lecco Club ti ricontatterà entro poche ore al numero indicato per confermare il tuo pass di prova.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px' }}>NOME E COGNOME *</label>
+                  <input 
+                    type="text" 
+                    required 
+                    placeholder="Mario Rossi"
+                    value={formData.nome}
+                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '14px 16px',
+                      backgroundColor: 'rgba(10,10,10,0.9)',
+                      border: '1px solid var(--border-dark)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: '#FFFFFF',
+                      fontSize: '0.95rem',
+                      outline: 'none'
+                    }}
+                  />
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px' }}>EMAIL *</label>
+                    <input 
+                      type="email" 
+                      required 
+                      placeholder="mario@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '14px 16px',
+                        backgroundColor: 'rgba(10,10,10,0.9)',
+                        border: '1px solid var(--border-dark)',
+                        borderRadius: 'var(--radius-sm)',
+                        color: '#FFFFFF',
+                        fontSize: '0.95rem'
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px' }}>TELEFONO *</label>
+                    <input 
+                      type="tel" 
+                      required 
+                      placeholder="+39 340 1234567"
+                      value={formData.telefono}
+                      onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '14px 16px',
+                        backgroundColor: 'rgba(10,10,10,0.9)',
+                        border: '1px solid var(--border-dark)',
+                        borderRadius: 'var(--radius-sm)',
+                        color: '#FFFFFF',
+                        fontSize: '0.95rem'
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px' }}>MOTIVO DELLA RICHIESTA</label>
+                  <select 
+                    value={formData.interesso}
+                    onChange={(e) => setFormData({ ...formData, interesso: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '14px 16px',
+                      backgroundColor: 'rgba(10,10,10,0.9)',
+                      border: '1px solid var(--border-dark)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: '#FFFFFF',
+                      fontSize: '0.95rem'
+                    }}
+                  >
+                    <option value="Prova Gratuita">Prenota Prova Gratuita</option>
+                    <option value="Informazioni Abbonamenti">Informazioni Abbonamenti</option>
+                    <option value="Personal Coaching">Personal Coaching & Anamnesi</option>
+                    <option value="Corporate & Team Building">Corporate & Convenzioni</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '6px' }}>MESSAGGIO O NOTE (OPZIONALE)</label>
+                  <textarea 
+                    rows={4}
+                    placeholder="Raccontaci i tuoi obiettivi o i corsi a cui sei maggiormente interessato..."
+                    value={formData.messaggio}
+                    onChange={(e) => setFormData({ ...formData, messaggio: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '14px 16px',
+                      backgroundColor: 'rgba(10,10,10,0.9)',
+                      border: '1px solid var(--border-dark)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: '#FFFFFF',
+                      fontSize: '0.95rem',
+                      resize: 'none'
+                    }}
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="btn-neon"
+                  style={{ width: '100%', padding: '16px', fontSize: '1.15rem', marginTop: '8px' }}
+                >
+                  <Send size={18} /> INVIA RICHIESTA ORA
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/Navbar.jsx">
+import React, { useState, useEffect } from 'react';
+import { Flame, Menu, X, Calendar, MapPin, Zap, ChevronRight } from 'lucide-react';
+
+export default function Navbar({ activeTab, setActiveTab, onBookClick }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { id: 'home', label: 'HOME' },
+    { id: 'corsi', label: 'CORSI & PALINSESTO' },
+    { id: 'abbonamenti', label: 'ABBONAMENTI' },
+    { id: 'location', label: 'LOCATION LECCO' },
+    { id: 'contatti', label: 'CONTATTI' },
+  ];
+
+  const handleNavClick = (id) => {
+    setActiveTab(id);
+    setMobileMenuOpen(false);
+    
+    // Smooth scroll to section if on single-page view
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        backgroundColor: scrolled ? 'rgba(10, 10, 10, 0.92)' : 'rgba(10, 10, 10, 0.6)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: scrolled ? '1px solid rgba(255, 0, 51, 0.25)' : '1px solid rgba(255, 255, 255, 0.05)',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        padding: scrolled ? '12px 0' : '20px 0'
+      }}
+    >
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        
+        {/* Brand Logo */}
+        <div 
+          onClick={() => handleNavClick('home')} 
+          style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}
+        >
+          <div 
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '8px',
+              background: 'linear-gradient(135deg, #FF0033 0%, #0A0A0A 100%)',
+              border: '1px solid #FF0033',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 0 15px rgba(255,0,51,0.5)'
+            }}
+          >
+            <Flame size={26} color="#FFFFFF" />
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ 
+                fontFamily: 'var(--font-heading)', 
+                fontSize: '1.6rem', 
+                fontWeight: 900, 
+                letterSpacing: '1px',
+                color: '#FFFFFF',
+                lineHeight: 1
+              }}>
+                FITNESS <span style={{ color: 'var(--accent-neon)' }}>LECCO</span>
+              </span>
+              <span style={{ 
+                backgroundColor: 'var(--accent-gold)', 
+                color: '#0A0A0A', 
+                fontSize: '0.65rem', 
+                fontWeight: 800, 
+                padding: '2px 6px', 
+                borderRadius: '4px',
+                fontFamily: 'var(--font-body)',
+                letterSpacing: '1px'
+              }}>
+                CLUB
+              </span>
+            </div>
+            <span style={{ 
+              fontSize: '0.65rem', 
+              color: 'var(--text-muted)', 
+              letterSpacing: '2px', 
+              textTransform: 'uppercase',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              marginTop: '2px'
+            }}>
+              <MapPin size={10} color="var(--accent-neon)" /> LECCO • LAGO & MONTAGNE
+            </span>
+          </div>
+        </div>
+
+        {/* Desktop Navigation Links */}
+        <nav style={{ display: 'none', md: 'flex', gap: '28px', alignItems: 'center' }} className="desktop-nav">
+          {navLinks.map((link) => {
+            const isActive = activeTab === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => handleNavClick(link.id)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: isActive ? 'var(--accent-neon)' : 'var(--text-primary)',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.05rem',
+                  letterSpacing: '1.5px',
+                  cursor: 'pointer',
+                  padding: '6px 0',
+                  position: 'relative',
+                  transition: 'color 0.2s ease',
+                  fontWeight: isActive ? '700' : '400'
+                }}
+              >
+                {link.label}
+                {isActive && (
+                  <div 
+                    style={{
+                      position: 'absolute',
+                      bottom: '-2px',
+                      left: 0,
+                      right: 0,
+                      height: '2px',
+                      backgroundColor: 'var(--accent-neon)',
+                      boxShadow: 'var(--glow-red)'
+                    }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* CTA Button */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <button 
+            className="btn-neon"
+            onClick={onBookClick}
+            style={{ padding: '10px 20px', fontSize: '0.95rem' }}
+          >
+            <Zap size={16} /> PROVA GRATUITA
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid var(--border-neon)',
+              borderRadius: '8px',
+              padding: '8px',
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            className="mobile-toggle"
+          >
+            {mobileMenuOpen ? <X size={24} color="var(--accent-neon)" /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer Navigation */}
+      {mobileMenuOpen && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: '72px',
+            left: 0,
+            right: 0,
+            backgroundColor: 'rgba(10, 10, 10, 0.98)',
+            backdropFilter: 'blur(20px)',
+            borderBottom: '1px solid var(--border-neon)',
+            padding: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+            zIndex: 99
+          }}
+        >
+          {navLinks.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => handleNavClick(link.id)}
+              style={{
+                background: activeTab === link.id ? 'rgba(255,0,51,0.1)' : 'transparent',
+                border: activeTab === link.id ? '1px solid var(--border-neon)' : '1px solid transparent',
+                borderRadius: '8px',
+                color: activeTab === link.id ? 'var(--accent-neon)' : '#FFFFFF',
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.25rem',
+                textAlign: 'left',
+                padding: '12px 16px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <span>{link.label}</span>
+              <ChevronRight size={18} color="var(--accent-neon)" />
+            </button>
+          ))}
+        </div>
+      )}
+
+      <style>{`
+        @media (min-width: 992px) {
+          .desktop-nav { display: flex !important; }
+          .mobile-toggle { display: none !important; }
+        }
+        @media (max-width: 991px) {
+          .desktop-nav { display: none !important; }
+          .mobile-toggle { display: flex !important; }
+        }
+      `}</style>
+    </header>
+  );
+}
+</file>
+
+<file path="src/components/SocialProofCommunity.jsx">
+import React, { useState } from 'react';
+import { Instagram, Star, Award, Users, Heart, MessageCircle, ShieldCheck, Flame, CheckCircle } from 'lucide-react';
+
+export default function SocialProofCommunity() {
+  const [activeReviewTab, setActiveReviewTab] = useState(0);
+
+  const stats = [
+    { label: 'MEMBRI ATTIVI', value: '1.250+', sub: 'Community Lecchese' },
+    { label: 'CORSI SETTIMANALI', value: '50+', sub: 'Inclusi nel Palinsesto' },
+    { label: 'SUPERFICIE HIGH-TECH', value: '2.500 M²', sub: 'Vista Lago & Resegone' },
+    { label: 'SODDISFAZIONE ATLETI', value: '99.4%', sub: 'Recensioni Verificate' }
+  ];
+
+  const instagramPosts = [
+    {
+      id: 1,
+      image: '/hero_gym.png',
+      caption: 'Inizia la settimana con la massima carica. La vista sul Resegone dalla nostra Cardio Zone non ha eguali. ⚡ #FitnessLecco #Lecco',
+      likes: '482',
+      comments: '36'
+    },
+    {
+      id: 2,
+      image: '/functional_zone.png',
+      caption: 'Sessione HYROX ad altissima intensità nella Functional Arena. Sgancia le tue scuse ed entra in azione. 🔥 #HyroxLecco #Workout',
+      likes: '620',
+      comments: '54'
+    },
+    {
+      id: 3,
+      image: '/hero_gym.png',
+      caption: 'Skillbike & Neon Beats: la fusione perfetta tra luce, suono ed impulso cardiaco. 🚴‍♂️🔴 #RedPulse #FitnessLeccoClub',
+      likes: '512',
+      comments: '29'
+    }
+  ];
+
+  const reviews = [
+    {
+      name: 'Matteo Valsecchi',
+      role: 'Trail Runner & Membro Pro',
+      avatar: 'MV',
+      text: 'Frequento palestre da anni a Lecco, ma la struttura di Fitness Lecco Club è su un altro livello. Le attrezzature sono nuovissime e l area functional è la migliore in tutta la provincia.',
+      rating: 5,
+      date: '10 Luglio 2026'
+    },
+    {
+      name: 'Giulia Corti',
+      role: 'Cross & Hyrox Athlete',
+      avatar: 'GC',
+      text: 'I corsi di HYROX con il trainer Marco sono fotonici! L atmosfera dark con le luci neon ti dà la carica giusta prima e dopo il lavoro. Straconsigliata!',
+      rating: 5,
+      date: '18 Luglio 2026'
+    },
+    {
+      name: 'Riccardo Invernizzi',
+      role: 'Membro VIP',
+      avatar: 'RI',
+      text: 'La riservatezza della VIP Suite ed la disponibilità del Personal Coach Davide mi hanno permesso di raggiungere i miei obiettivi fisici in soli tre mesi. Servizio impecabile.',
+      rating: 5,
+      date: '22 Luglio 2026'
+    }
+  ];
+
+  return (
+    <section className="section-dark" style={{ borderTop: '1px solid var(--border-dark)', borderBottom: '1px solid var(--border-dark)' }}>
+      <div className="container">
+        
+        {/* Dynamic Counters Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '24px',
+            marginBottom: '80px'
+          }}
+        >
+          {stats.map((st, i) => (
+            <div 
+              key={i} 
+              className="card-neon" 
+              style={{ padding: '28px 24px', textAlign: 'center' }}
+            >
+              <div 
+                style={{ 
+                  fontFamily: 'var(--font-heading)', 
+                  fontSize: '3.2rem', 
+                  color: 'var(--accent-neon)', 
+                  lineHeight: 1, 
+                  marginBottom: '8px',
+                  textShadow: 'var(--glow-red)'
+                }}
+              >
+                {st.value}
+              </div>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', color: '#FFFFFF', letterSpacing: '1px', marginBottom: '4px' }}>
+                {st.label}
+              </div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                {st.sub}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Section Header: Instagram Feed */}
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <div className="badge-neon" style={{ marginBottom: '12px' }}>
+            <Instagram size={14} />
+            <span>COMMUNITY INSTAGRAM FEED</span>
+          </div>
+          <h2 style={{ fontSize: 'var(--text-h1)', marginBottom: '12px' }}>
+            SUGGUE L'ENERGIA SU <span className="text-neon">@FITNESSLECCOCLUB</span>
+          </h2>
+          <p style={{ color: 'var(--text-muted)' }}>
+            Post reali, contenuti della community e momenti di allenamento quotidiani.
+          </p>
+        </div>
+
+        {/* Instagram Simulated Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '24px',
+            marginBottom: '80px'
+          }}
+        >
+          {instagramPosts.map((post) => (
+            <div key={post.id} className="card-neon" style={{ padding: '0', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: '260px' }}>
+                <img 
+                  src={post.image} 
+                  alt="Instagram preview" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                
+                {/* Top Badge Overlay */}
+                <div 
+                  style={{
+                    position: 'absolute',
+                    top: '12px',
+                    left: '12px',
+                    backgroundColor: 'rgba(10,10,10,0.85)',
+                    backdropFilter: 'blur(8px)',
+                    border: '1px solid var(--border-neon)',
+                    padding: '4px 10px',
+                    borderRadius: 'var(--radius-full)',
+                    fontSize: '0.75rem',
+                    color: 'var(--accent-neon)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontWeight: 700
+                  }}
+                >
+                  <ShieldCheck size={14} color="var(--accent-neon)" />
+                  <span>FITNESS LECCO APPROVED</span>
+                </div>
+              </div>
+
+              <div style={{ padding: '16px 20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Heart size={16} color="var(--accent-neon)" fill="var(--accent-neon)" />
+                    <span>{post.likes}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <MessageCircle size={16} />
+                    <span>{post.comments}</span>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: '0.88rem', color: '#E4E4E7', lineHeight: 1.5 }}>
+                  {post.caption}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Member Reviews & Approved Badge */}
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <div className="badge-gold" style={{ marginBottom: '12px' }}>
+            <Award size={14} />
+            <span>TESTIMONIALS & TRUST</span>
+          </div>
+          <h2 style={{ fontSize: 'var(--text-h1)' }}>
+            COSA DICONO I NOSTRI <span className="text-gold">ATLETI</span>
+          </h2>
+        </div>
+
+        {/* Reviews Carousel/Tab Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '24px'
+          }}
+        >
+          {reviews.map((rev, idx) => (
+            <div key={idx} className="card-gold" style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <div style={{ display: 'flex', gap: '4px' }}>
+                    {[...Array(rev.rating)].map((_, i) => (
+                      <Star key={i} size={16} color="var(--accent-gold)" fill="var(--accent-gold)" />
+                    ))}
+                  </div>
+                  
+                  <div 
+                    style={{
+                      fontSize: '0.7rem',
+                      fontWeight: 800,
+                      color: 'var(--accent-gold)',
+                      backgroundColor: 'rgba(229,169,60,0.15)',
+                      padding: '4px 8px',
+                      borderRadius: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}
+                  >
+                    <CheckCircle size={12} /> VERIFICATO
+                  </div>
+                </div>
+
+                <p style={{ fontSize: '0.95rem', color: '#E4E4E7', fontStyle: 'italic', lineHeight: 1.6, marginBottom: '24px' }}>
+                  "{rev.text}"
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <div 
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--accent-gold)',
+                    color: '#0A0A0A',
+                    fontWeight: 900,
+                    fontSize: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontFamily: 'var(--font-heading)'
+                  }}
+                >
+                  {rev.avatar}
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '1.1rem', color: '#FFFFFF', margin: 0 }}>{rev.name}</h4>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{rev.role}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/App.jsx">
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import HeroShowcase from './components/HeroShowcase';
+import DynamicSchedule, { COURSES_DATA } from './components/DynamicSchedule';
+import ExperiencePreviewLightbox from './components/ExperiencePreviewLightbox';
+import AbbonamentiSection from './components/AbbonamentiSection';
+import SocialProofCommunity from './components/SocialProofCommunity';
+import LocationContacts from './components/LocationContacts';
+import Footer from './components/Footer';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+  const [lightboxItem, setLightboxItem] = useState(null);
+
+  const handleOpenLightbox = (courseItem) => {
+    setLightboxItem(courseItem);
+  };
+
+  const handleCloseLightbox = () => {
+    setLightboxItem(null);
+  };
+
+  const scrollToSection = (id) => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleOpenTrialBooking = () => {
+    // Select first course as default for booking or open contact section
+    handleOpenLightbox(COURSES_DATA[0]);
+  };
+
+  return (
+    <div style={{ backgroundColor: 'var(--bg-main)', minHeight: '100vh', color: 'var(--text-primary)' }}>
+      
+      {/* Top Fixed Header */}
+      <Navbar 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+        onBookClick={handleOpenTrialBooking} 
+      />
+
+      {/* 1. Hero Showcase Section */}
+      <HeroShowcase 
+        onExploreCourses={() => scrollToSection('corsi')} 
+        onBookTrial={handleOpenTrialBooking} 
+      />
+
+      {/* 2. Dynamic Schedule & Course Catalog */}
+      <DynamicSchedule 
+        onOpenLightbox={handleOpenLightbox} 
+      />
+
+      {/* 3. Membership & Abbonamenti */}
+      <AbbonamentiSection 
+        onSelectPlan={(plan) => handleOpenLightbox({
+          title: `ABBONAMENTO ${plan.name}`,
+          category: plan.name,
+          time: 'Accesso Riservato',
+          duration: 'Mensile',
+          room: 'Tutte le aree del club',
+          trainer: 'Staff Fitness Lecco',
+          image: '/hero_gym.png',
+          description: plan.subtitle,
+          equipment: plan.features.join(', '),
+          target: `Prezzo promozionale €${plan.price}/mese`
+        })}
+      />
+
+      {/* 4. Social Proof & Community */}
+      <SocialProofCommunity />
+
+      {/* 5. Location & Contacts */}
+      <LocationContacts />
+
+      {/* Footer */}
+      <Footer onNavClick={scrollToSection} />
+
+      {/* Experience Preview Dark Lightbox Modal */}
+      {lightboxItem && (
+        <ExperiencePreviewLightbox 
+          item={lightboxItem} 
+          onClose={handleCloseLightbox} 
+        />
+      )}
+
+    </div>
+  );
+}
+</file>
+
+<file path="src/index.css">
+/* ==========================================================================
+   FITNESS LECCO CLUB - OFFICIAL DESIGN SYSTEM & STYLESHEET
+   Based on Guida Operativa & Manuale di Design v1.0
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Dark Premium & Neon Red */
+  --bg-main: #0A0A0A;
+  --bg-black: #000000;
+  --bg-card: rgba(20, 20, 20, 0.85);
+  --bg-card-hover: rgba(28, 28, 28, 0.95);
+  --bg-modal: rgba(12, 12, 12, 0.96);
+  
+  --text-primary: #FFFFFF;
+  --text-muted: #A1A1AA;
+  --text-dim: #71717A;
+  
+  --accent-neon: #FF0033;
+  --accent-neon-bright: #FF1E38;
+  --accent-gold: #E5A93C;
+  --accent-gold-bright: #FFC700;
+  
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --border-neon: rgba(255, 0, 51, 0.3);
+  --border-neon-strong: rgba(255, 0, 51, 0.7);
+  --border-gold: rgba(229, 169, 60, 0.4);
+  
+  --glow-red: 0 0 25px rgba(255, 0, 51, 0.45);
+  --glow-red-intense: 0 0 35px rgba(255, 0, 51, 0.75), 0 0 10px rgba(255, 30, 56, 0.9);
+  --glow-gold: 0 0 20px rgba(229, 169, 60, 0.35);
+
+  /* Typography */
+  --font-heading: 'Bebas Neue', 'Montserrat', sans-serif;
+  --font-body: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+
+  --text-hero: clamp(2.8rem, 6.5vw, 5.2rem);
+  --text-h1: clamp(2.2rem, 4.5vw, 3.5rem);
+  --text-h2: clamp(1.6rem, 3vw, 2.2rem);
+  --text-h3: 1.35rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+
+  --lh-heading: 1.05;
+  --lh-body: 1.6;
+  --ls-heading: 1.5px;
+  --ls-wide: 3px;
+
+  /* Spacing Grid (8px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --container-max: 1280px;
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-main);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Typography Utility Classes */
+h1, h2, h3, h4, .title-monumental {
+  font-family: var(--font-heading);
+  letter-spacing: var(--ls-heading);
+  line-height: var(--lh-heading);
+  text-transform: uppercase;
+}
+
+.title-hero {
+  font-size: var(--text-hero);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  text-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+.text-neon {
+  color: var(--accent-neon);
+  text-shadow: 0 0 15px rgba(255, 0, 51, 0.5);
+}
+
+.text-gold {
+  color: var(--accent-gold);
+  text-shadow: 0 0 12px rgba(229, 169, 60, 0.4);
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #FFFFFF 30%, #FF1E38 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFFFFF 20%, #E5A93C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.section-dark {
+  background-color: var(--bg-main);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+  position: relative;
+}
+
+.section-black {
+  background-color: var(--bg-black);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+  position: relative;
+}
+
+/* Badges */
+.badge-neon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 14px;
+  background: rgba(255, 0, 51, 0.12);
+  border: 1px solid var(--border-neon);
+  border-radius: var(--radius-full);
+  color: var(--accent-neon);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 14px;
+  background: rgba(229, 169, 60, 0.12);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-full);
+  color: var(--accent-gold);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+/* Buttons */
+.btn-neon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 14px 28px;
+  background: var(--accent-neon);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--accent-neon-bright);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  box-shadow: var(--glow-red);
+}
+
+.btn-neon:hover {
+  background: var(--accent-neon-bright);
+  box-shadow: var(--glow-red-intense);
+  transform: translateY(-2px);
+}
+
+.btn-outline-neon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 14px 28px;
+  background: rgba(20, 20, 20, 0.6);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--border-neon);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: var(--transition-fast);
+}
+
+.btn-outline-neon:hover {
+  border-color: var(--accent-neon);
+  box-shadow: var(--glow-red);
+  color: var(--accent-neon);
+  background: rgba(255, 0, 51, 0.08);
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 14px 28px;
+  background: var(--accent-gold);
+  color: #0A0A0A;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  box-shadow: var(--glow-gold);
+}
+
+.btn-gold:hover {
+  background: var(--accent-gold-bright);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism Cards */
+.card-neon {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-neon);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-neon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-neon), transparent);
+  opacity: 0.4;
+  transition: var(--transition-fast);
+}
+
+.card-neon:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-neon-strong);
+  box-shadow: var(--glow-red);
+  background: var(--bg-card-hover);
+}
+
+.card-neon:hover::before {
+  opacity: 1;
+}
+
+.card-gold {
+  background: rgba(22, 20, 16, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  transition: var(--transition-normal);
+}
+
+.card-gold:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--glow-gold);
+  border-color: var(--accent-gold);
+}
+
+/* Keyframe Animations */
+@keyframes ecgPulse {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes neonGlowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 12px rgba(255, 0, 51, 0.5));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(255, 0, 51, 0.85));
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-neon-pulse {
+  animation: neonGlowPulse 3s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: floatSlow 4s infinite ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-neon);
+}
+</file>
+
+<file path="src/main.jsx">
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+</file>
+
+<file path="Guida Metodologica Palestra Lecco.md">
+# 🏛️ Guida Metodologica per Prototipi Web — Fitness Lecco Club
+
+## 1. Profilo e Identità del Brand
+* **Descrizione del Cliente:** **Fitness Lecco Club**, un'esclusiva struttura fitness di nuova concezione con sede a Lecco. Posizionamento di alto impatto, moderno, immersivo e ad alta energia. Il target di riferimento è un pubblico dinamico, orientato alla performance, all'innovazione e al benessere, con un forte senso di appartenenza al territorio lecchese (lago e montagne).
+* **Tono di Voce:** Emozionante, diretto, motivazionale e futuristico. Utilizzo di messaggi d'impatto brevi, evocativi ed incisivi (es. *"Novità a Lecco"*, *"Una Nuova Dimensione"*, *"Qualcosa di Unico ed Emozionante"*).
+* **Identità Visiva:** Stile **Dark Mode Premium & High Contrast**. L'aspetto visivo sfrutta lo sfondo nero profondo (`#000000` / `#0A0A0A`) combinato con dettagli **Rosso Neon Pulsante** (`#FF0033` / `#FF1E38`) ed elementi di contrasto in **Bianco Puro** e lievi accenti **Giallo/Oro** (derivati dal badge *"CLUB"* del logo). La linea visiva fonde l'iconografia del territorio di Lecco (skyline della città, profilo delle montagne/Resegone e lago) con elementi di vitalità e frequenza cardiaca (linea ECG neon).
+
+---
+
+## 2. Tipografia e Timbro Visivo
+* **Gerarchia dei Font:**
+  * **Font Principale (Titoli e Accenti):** Font Sans-Serif Condensed ad altissimo impatto e carattere monumentale (es. *Bebas Neue*, *Anton* o *Montserrat Extra Bold Condensed*), utilizzato in maiuscolo con spaziatura definita per trasmettere potenza, grinta e presenza visiva.
+  * **Font di Supporto (Testo e Navigazione):** Font Sans-Serif geometrico e futuristico (es. *Inter*, *Outfit* o *Chakra Petch*), ottimizzato per la massima leggibilità tecnica su dispositivi mobile e schermi ad alta risoluzione (OLED/AMOLED).
+* **Trattamento dei Testi:** Titoli principali in maiuscolo monospaziato con effetti di luce o glow sottile per richiamare i neon; sottotitoli e testi descrittivi con formattazione fluida, buona spaziatura interlinea ed elevato contrasto su sfondo scuro per facilitare la consultazione rapida.
+
+---
+
+## 3. Elementi Decorativi e Micro-Interazioni
+* **Sfondi e Sezioni Hero:** Sfondi scuri arricchiti da sfumature radiali rosso-drammatiche, bagliori neon soffusi (*glow effect*) e grafiche dinamiche che combinano la sagoma del paesaggio lecchese con tracciati di impulsi cardiaci in animazione d'onda fluida.
+* **Dettagli d'Ambiente:** Schede e banner dotati di bordi illuminati in stile LED neon, sfondi semi-trasparenti con effetto vetro satinato scuro (*glassmorphism* scuro con `backdrop-blur`) per dare profondità tridimensionale ed evitare superfici piatte.
+* **Transizioni ed Effetti:** Risposta visiva reattiva e "tecnologica" al passaggio del cursore (hover) o al tocco: pulsazione dell'intensità luminosa dei bordi neon, lievi ingrandimenti delle schede e variazioni di brillantezza sui bottoni d'azione principali (*Call to Action*).
+
+---
+
+## 4. Componenti Interattive Fondamentali
+* **Vetrine e Contenuti in Evidenza (Hero Showcase):** Caroselli e sezioni d'impatto a tutto schermo con fotografie d'ambiente ad alto contrasto, sovrapposizioni visive scure, portal neon centrali e typography d'impatto che richiamano la campagna di lancio del club.
+* **Modalità di Espansione (Lightbox & Experience Preview):** Possibilità di aprire schede descrittive di corsi, aree della palestra ed attrezzature in modalità pop-up dark full-screen, corredate da video teaser brevi in loop e dettagli d'ambiente.
+* **Cataloghi e Schedule Dinamici:** Palinsesto orario dei corsi e listino servizi consultabili rapidamente tramite filtri per categoria (*Cardio*, *Strength*, *Functional*, *Personal Training*), con sistema di prenotazione o richiesta informazioni integrato in pochissimi tap.
+* **Elementi di Riassunto e Social Proof:** Feed integrato del profilo Instagram in tempo reale, counter dinamici di membri della community e box recensioni firmati con il badge *"Fitness Lecco Approved"* per generare immediata fiducia ed hype.
+
+---
+
+## 5. Architettura delle Pagine e Struttura
+* **Organizzazione Modulare:**
+  * Architettura organizzata con cartelle chiare per le pagine (`/home`, `/corsi`, `/abbonamenti`, `/location-lecco`, `/contatti`) e moduli riutilizzabili per i componenti della GUI (`/components/neon-card`, `/components/hero-skyline`, `/components/schedule-picker`).
+  * Separazione netta tra risorse mediatiche (`/assets/images`, `/assets/vectors/lecco-skyline.svg`) e file di configurazione stilistica.
+* **Pulizia del Codice:** Mantenimento delle variabili di stile globali (palette colori neon `--neon-red`, `--dark-bg`, `--gold-accent`, regole per i bagliori) separate dalla struttura semantica HTML e dalle logiche interattive JS/TS.
+
+---
+
+## 6. Flusso di Lavoro e Gestione della Collaborazione
+* **Isolamento dei File Temporanei:** Esclusione rigorosa dal tracciamento di versione (tramite `.gitignore`) di tutti i file generati da editor locali, risorse grafiche temporanee ad alta risoluzione non ottimizzate e configurazioni d'ambiente.
+* **Procedura di Salvataggio Sicura:**
+  1. Selezione controllata dei soli file di codice o asset vettoriali aggiornati per lo sviluppo del prototipo.
+  2. Creazione di messaggi di salvataggio espliciti e strutturati (es. `feat: add neon skyline background and course filter`).
+  3. Sviluppo coordinato su rami dedicati (`feature/dark-neon-theme`, `feature/interactive-schedule`) per non compromettere il codice stabile.
+  4. Test e verifica della resa dei colori neon e dei contrasti su dispositivi mobili prima dell'integrazione sul ramo principale.
+</file>
+
+<file path="Guida Operativa Fitness Lecco.md">
+# 📘 Guida Operativa & Manuale di Design: Progetto Fitness Lecco Club
+
+> **Versione:** 1.0  
+> **Oggetto:** Workflow Git/GitHub, Architettura Layout, Tipografia, Colori e Design Visivo (Dark Neon Mode)  
+> **Destinazione:** Guida di riferimento rapida per lo sviluppo web del club  
+
+---
+
+## 📋 Indice dei Contenuti
+1. [Workflow Git & Gestione Repository (Senza Errori)](#1-workflow-git--gestione-repository-senza-errori)
+2. [Gestione Account Multipli e Autenticazione (Token PAT)](#2-gestione-account-multipli-e-autenticazione-token-pat)
+3. [Layout della Pagina & Allineamenti Spaziali](#3-layout-della-pagina--allineamenti-spaziali)
+4. [Tipografia & Scelta dei Font (Typography System)](#4-tipografia--scelta-dei-font-typography-system)
+5. [Palette Colori & Teoria del Colore (Dark Premium & Neon Red Palette)](#5-palette-colori--teoria-del-colore-dark-premium--neon-red-palette)
+6. [Design Visivo, Dettagli Decorativi & UI/UX](#6-design-visivo-dettagli-decorativi--uiux)
+7. [Guida all'Avvio dei Progetti (Statico vs Node.js/React)](#7-guida-allavvio-dei-progetti-statico-vs-nodejsreact)
+8. [Cheat Sheet dei Comandi e delle Regole d'Oro](#8-cheat-sheet-dei-comandi-e-delle-regole-doro)
+
+---
+
+## 1. Workflow Git & Gestione Repository (Senza Errori)
+
+Per evitare conflitti, errori di `remote origin already exists` o `Repository not found`, segui la procedura standard corretta.
+
+### A. Clonare una Repository Esistente (Il metodo più pulito)
+
+**NON creare manualmente la cartella del progetto.** Lascia che sia Git a crearla automaticamente.
+
+```bash
+# 1. Spostati nella cartella principale (es. Desktop)
+cd ~/Desktop
+
+# 2. Clona la repository usando l'URL con Token integrato
+git clone https://IL_TUO_TOKEN@github.com/r-46n0/fitness-lecco-club.git
+
+# 3. Entra nella cartella appena creata
+cd fitness-lecco-club
+```
+
+### B. Inizializzare un Progetto Locale Esistente
+
+Se hai già i file sul computer e vuoi collegarli a una nuova repository vuota su GitHub:
+
+```bash
+# 1. Inizializza la cartella come repository Git
+git init
+
+# 2. Aggiungi tutti i file al tracking
+git add .
+
+# 3. Crea il primo commit
+git commit -m "feat: primo commit prototipo fitness lecco club"
+
+# 4. Imposta il branch principale su main
+git branch -M main
+
+# 5. Collega la repository remota (sostituisci IL_TUO_TOKEN)
+git remote add origin https://IL_TUO_TOKEN@github.com/r-46n0/fitness-lecco-club.git
+
+# 6. Invia i dati su GitHub
+git push -u origin main
+```
+
+---
+
+## 2. Gestione Account Multipli e Autenticazione (Token PAT)
+
+### Perché la password standard non funziona più?
+GitHub ha disabilitato l'autenticazione tramite password da terminale. È obbligatorio usare un Personal Access Token (PAT) o la configurazione SSH.
+
+### Come Generare un Token PAT in 30 Secondi:
+1. Vai su GitHub.com → Clicca sull'immagine profilo → **Settings**.
+2. Scorri in fondo a sinistra → **Developer Settings** → **Personal Access Tokens** → **Tokens (classic)**.
+3. Clicca su **Generate new token (classic)**.
+4. Nome: `Macbook-Dev-FitnessLecco` | Scadenza: `90 giorni` o `No Expiration`.
+5. Spunta la casella principale **repo** (concede il controllo completo dei repository).
+6. Clicca **Generate token** e copia la stringa generata (inizia con `ghp_...`).
+
+### Risoluzione Errori Frequenti:
+
+| Errore nel Terminale | Causa Radice | Soluzione Immediata |
+| :--- | :--- | :--- |
+| `fatal: remote origin already exists.` | La cartella ha già un'origine configurata. | `git remote remove origin` oppure `git remote set-url origin <URL>` |
+| `remote: Repository not found.` | Account o URL non corretti / Mancanza di permessi. | Verificare l'utente e reinserire il Token remoto. |
+| `remote: Invalid username or token.` | Credenziali salvate nel Portachiavi scadute o errate. | Aggiornare l'URL remoto col nuovo Token. |
+
+---
+
+## 3. Layout della Pagina & Allineamenti Spaziali
+
+Per un club fitness immersivo e ad altissima energia, la struttura visiva deve combinare spazi ampi, contrasto elevato e sezioni a forte impatto visivo.
+
+### A. La Regola della Griglia a 8px (8pt Grid System)
+Tutti i margini, padding e dimensioni delle schede/corsi devono essere multipli di 8px (oppure 4px per dettagli come i bordi neon):
+- Padding interno componenti: `12px`, `16px`, `24px`, `32px`
+- Margine tra sezioni principali: `64px`, `96px`, `128px`
+
+### B. Gestione del Layout e Responsive
+- **Larghezza Contenitore Massimo (Container Max-Width):**
+  - Schede Corsi / Tabella Orari: `1100px`
+  - Layout Web Standard & Hero Section: `1280px` - `1400px`
+- **Allineamento Visivo:**
+  - Layout a griglia dinamica per le schede dei corsi ed eventi.
+  - Titoli hero centrati o con testo d'impatto allineato a sinistra su grafiche dello skyline di Lecco.
+
+```css
+/* Layout Base Dark Mode & High Contrast */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.section-dark {
+  background-color: #0A0A0A;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+```
+
+---
+
+## 4. Tipografia & Scelta dei Font (Typography System)
+
+Il settore fitness richiede una tipografia monumentale, aggressiva e dinamica nei titoli, abbinata a font ultra-leggibili e tecnologici per palinsesti ed orari.
+
+### Pairings di Font Ufficiali
+- **Stile High Energy & Performance (Scelta Principale)**
+  - **Heading (Titoli & Accenti):** Bebas Neue o Montserrat Extra Bold Condensed (Sans-Serif Condensed, imponente, energico, maiuscolo)
+  - **Body (Testo & Palinsesti):** Inter o Outfit / Chakra Petch (Geometria pulita, ad altissima leggibilità su schermi OLED/AMOLED)
+
+### Gerarchia Tipografica Consigliata
+
+```css
+:root {
+  /* Font Families */
+  --font-heading: 'Bebas Neue', 'Montserrat', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Scale Tipografica */
+  --text-hero: clamp(3rem, 7vw, 5.5rem);   /* Titoli Monumentali */
+  --text-h1: clamp(2.2rem, 4.5vw, 3.5rem); /* 35px - 56px */
+  --text-h2: clamp(1.6rem, 3vw, 2.2rem);   /* 25px - 35px */
+  --text-h3: 1.35rem;                      /* 21px */
+  --text-body: 1rem;                       /* 16px */
+  --text-small: 0.875rem;                  /* 14px */
+  
+  /* Line Height & Spaziatura */
+  --lh-heading: 1.05;                      /* Interlinea compatta per impatto visivo */
+  --lh-body: 1.6;
+  --ls-heading: 1.5px;                     /* Spaziatura lettere per titoli maiuscoli */
+}
+```
+
+---
+
+## 5. Palette Colori & Teoria del Colore (Dark Premium & Neon Red Palette)
+
+I colori del Fitness Lecco Club trasmettono energia, tecnologia ed esclusività. La base è dominata da un nero profondo spezzato da bagliori rosso neon e accenti oro/giallo.
+
+### Palette Ufficiale "Fitness Lecco Club"
+
+| Ruolo | Colore | Codice HEX | Descrizione Visiva |
+| :--- | :--- | :--- | :--- |
+| **Sfondo Principale** | Obsidian Black | `#0A0A0A` / `#000000` | Nero profondo per un'esperienza immersiva Dark Mode. |
+| **Superfici / Card** | Dark Charcoal Glass | `#141414` / `rgba(20,20,20,0.8)` | Schede semi-trasparenti scure con effetto vetro satinato. |
+| **Testo Principale** | Pure White | `#FFFFFF` | Bianco puro ad altissimo contrasto su sfondo scuro. |
+| **Accento Principale** | Pulsing Neon Red | `#FF0033` / `#FF1E38` | Rosso neon per elementi attivi, bottoni e tracciato ECG. |
+| **Accento Secondario** | Club Gold | `#E5A93C` / `#FFC700` | Giallo/Oro elegante derivato dal badge "CLUB" del logo. |
+| **Bordi & Glow Effect**| Neon Subtle Glow | `rgba(255,0,51,0.25)` | Bagliore luminoso sottile per bordi ed elementi in hover. |
+
+```css
+:root {
+  --bg-main: #0A0A0A;
+  --bg-card: #141414;
+  --text-primary: #FFFFFF;
+  --text-muted: #A1A1AA;
+  --accent-neon: #FF0033;
+  --accent-gold: #E5A93C;
+  --border-neon: rgba(255, 0, 51, 0.3);
+  --glow-red: 0 0 20px rgba(255, 0, 51, 0.4);
+}
+```
+
+---
+
+## 6. Design Visivo, Dettagli Decorativi & UI/UX
+
+I dettagli dell'interfaccia riflettono lo stile visivo del canale Instagram: impatto neon, skyline di Lecco ed elementi cardiaci.
+
+### A. Elementi Decorativi per il Club
+
+**Effetto Glassmorphism Scuro:** Schede con sfondi scuri semi-trasparenti e sfocatura `backdrop-filter`:
+
+```css
+.card-neon {
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-neon);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-neon:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-neon);
+  box-shadow: var(--glow-red);
+}
+```
+
+**Badge d'Impatto & Linea ECG Neon:**
+Inserisci sopra i titoli delle sezioni dei badge ripresi dalla comunicazione del brand:
+
+```html
+<span class="badge-neon">NOVITÀ A LECCO</span>
+<h2 class="title-monumental">UNA NUOVA DIMENSIONE DEL FITNESS</h2>
+```
+
+---
+
+## 7. Guida all'Avvio dei Progetti (Statico vs Node.js/React)
+
+Quando sviluppi o aggiorni una sezione del sito web, identifica l'architettura tecnica in uso:
+
+### Caso A: Sito Statico (HTML, CSS/Tailwind, JS)
+1. Apri la cartella del progetto.
+2. Avvia con l'estensione **Live Server** su VS Code (tasto destro su `index.html` → *Open with Live Server*).
+
+### Caso B: Web App / Progetto Node.js (React, Vite, Next.js)
+1. Verifica la presenza del file `package.json`.
+2. Apri il terminale ed esegui i comandi:
+
+```bash
+# 1. Scarica i moduli e le dipendenze mancanti
+npm install
+
+# 2. Avvia il server locale di sviluppo
+npm run dev
+```
+
+---
+
+## 8. Cheat Sheet dei Comandi e delle Regole d'Oro
+
+### 🔴 I 3 Errori da NON Fare Mai Più:
+1. **NON** usare mai sfondi chiari o bianchi piatti. Il sito deve mantenere una visuale Dark Mode Premium.
+2. **NON** abusare dell'effetto bagliore neon. Usa il bagliore (`--glow-red`) solo per stati attivi, bottoni d'azione principali e hover, evitando il sovraccarico visivo.
+3. **NON** creare manualmente la cartella prima del `git clone` e usa sempre il Token PAT (`ghp_...`).
+
+### ⚡ Prontuario Comandi Rapidi:
+
+```bash
+# Salvare e Spingere le modifiche in 3 passaggi
+git add .
+git commit -m "feat: aggiunta sezione corsi e layout neon"
+git push
+
+# Ripristino URL remoto con Token corretto
+git remote remove origin
+git remote add origin https://IL_TUO_TOKEN@github.com/r-46n0/fitness-lecco-club.git
+```
+
+---
+*Guida generata per il team di sviluppo — Progetto Fitness Lecco Club.*
+</file>
+
+<file path="index.html">
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Lecco Club | Una Nuova Dimensione del Fitness</title>
+    <meta name="description" content="Fitness Lecco Club: la prima palestra High-Tech Premium a Lecco. Schede corsi, area cardio, functional training, wellness e personal training con vista Resegone e Lago." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "fitness-lecco-club",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.2.0"
+  }
+}
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    open: true
+  }
+})
+</file>
+
+<file path="README.md">
+# Fitness-Lecco
+</file>
+
+</files>
